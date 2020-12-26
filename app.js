@@ -4,12 +4,18 @@ const todoInput = document.querySelector(".todo-input");
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".filter-todo");
+const name = document.getElementById("name");
 
 //Event Listeners event listener when HTML document has been completely loaded
 document.addEventListener("DOMContentLoaded", getTodos);
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
 filterOption.addEventListener("click", filterTodo);
+name.addEventListener("keydown", setName);
+name.addEventListener("blur", setName);
+
+//Run
+getName();
 
 //Functions
 function addTodo(event) {
@@ -132,4 +138,27 @@ function removeLocalTodos(todo) {
   const todoIndex = todo.children[0].innerText;
   todos.splice(todos.indexOf(todoIndex), 1);
   localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+//Set Name
+function setName(e) {
+  if (e.type === "keydown") {
+    //Make sure enter is pressed
+    if (e.key === "Enter") {
+      localStorage.setItem("name", e.target.textContent);
+      name.blur();
+    }
+  } else {
+    localStorage.setItem("name", e.target.textContent);
+  }
+}
+
+//Get Name
+function getName() {
+  let savedName = localStorage.getItem("name");
+  if (savedName === null) {
+    name.textContent = "<What is your name?>";
+  } else {
+    name.textContent = savedName;
+  }
 }
