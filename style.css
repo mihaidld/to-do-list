@@ -118,7 +118,7 @@ select {
   cursor: pointer;
   padding: 1rem;
 }
-/*add new symbol for select inside right not clickable*/
+/*add new symbol for select inside, on right-side, not clickable*/
 .select::after {
   content: "\25BC";
   position: absolute;

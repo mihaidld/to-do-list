@@ -42,7 +42,7 @@ function addTodo(event) {
 
 function deleteCheck(e) {
   const item = e.target;
-  //e.target gets the element I'm clicking on (the eveny target)
+  //e.target gets the element I'm clicking on (the event target)
   // Delete todo
   if (item.classList[0] === "trash-btn") {
     const todo = item.parentElement;
